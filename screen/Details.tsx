@@ -1,16 +1,15 @@
-import { View, Image, Text, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Home from './Home';
+import { Button, View, Image, Text, StyleSheet } from 'react-native';
 
 
-function Details(props: { route?: any; navigation?: any; }) {
-  const { marker } = props.route.params
+function Details( { route, navigation }) {
+  const { marker } = route.params
 
   return (
-    <>
-      <View style={{ flex: 1, alignItems: 'center', marginTop: 18 }}>
+    
+      <View style={{ flex: 1, alignItems: 'center', marginTop: 25, backgroundColor:'#00EADC', }}>
+
         <Image source={{ uri: `https://picsum.photos/id/${Math.floor(Math.random() * 10)}/200/300` }}
-          style={{ width: 150, height: 150, borderRadius: 400 / 2, marginBottom: 18 }} />
+          style={{ width: 150, height: 150, borderRadius: 400 / 2, marginBottom: 18, marginTop: 20 }} />
         <Text style={styles.text}>ID: {marker.id}</Text>
         <Text style={styles.text}>Name: {marker.name}</Text>
         <Text style={styles.text}>Gaelic Name: {marker.gaelic_name ? marker.gaelic_name : 'not available'}</Text>
@@ -18,22 +17,23 @@ function Details(props: { route?: any; navigation?: any; }) {
         <Text style={styles.text}>Latitude: {marker.latitude}</Text>
         <Text style={styles.text}>Longitude: {marker.longitude}</Text>
 
-        <button title="Return to map" onProgress={() => Home}/>
+        <Button title="Return to map" onPress={() => navigation.navigate('Home')}/>
       </View>
-    </>
+  
   );
 };
+
 
 const styles = StyleSheet.create({
   text: {
     fontSize: 17,
-    width: 250,
+    width: 280,
     borderColor: "#1d2cdd",
     color: "#1d2cdd",
-    borderWidth: 3,
-    padding: 4,
-    margin: 5,
-    borderRadius: 10
+    borderWidth: 2,
+    padding: 10,
+    margin: 7,
+    borderRadius:5, 
   }
 });
 
